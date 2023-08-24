@@ -23,7 +23,7 @@ The second one is to use the [COM interface](file:///C:/Program%20Files/Vector%2
 
 To access the CANoe Python API, you need to open the Communication Setup and click on Add Application Model where 
 you can select your Python script. After selecting the script, you can right-click on it and select the State, either 
-on or off.
+on or off. CANoe Python programming and API is described in [CANoe help file](file:///C:/Program%20Files/Vector%20CANoe%2017/Help01/CANoeCANalyzerHTML5/CANoeCANalyzer.htm#Topics/Shared/PythonAPI.htm?TocPath=Technical%2520References%257CPython%2520API%257C_____0).
 
 ##### Usage of the API
 The CANoe Python API is a set of functions that can be used to access the CANoe environment. There are four main modules 
@@ -48,6 +48,7 @@ Example is provided in the PythonAPI.py file.
 Unlike the CANoe Python API, the COM interface has no need to be established in the Communication Setup. You just need to 
 run the Python script in your editor. There are two ways to establish the COM interface. The first one is to use the
 win32com.client module. The second one is to use the dll files provided by Vector.
+All the documentation about the COM interface can be found in the [CANoe help file](file:///C:/Program%20Files/Vector%20CANoe%2017/Help01/CANoeCANalyzerHTML5/CANoeCANalyzer.htm#Topics/COMInterface/COMInterface.htm?TocPath=Technical%2520References%257C_____1).
 
 ##### Usage of the win32com.client module
 
