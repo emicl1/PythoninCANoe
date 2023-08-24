@@ -4,7 +4,7 @@
 ### Prerequisites
 [Python version 3.9.2 32 bit](https://www.python.org/downloads/release/python-392/)
 
-Vector CANoe 17
+Vector CANoe 17 --> configuration file is provided in the repository
 
 ### Using a Python editor 
 You can edit Python scripts by using VS Code or PyCharm. However, you need to open CANoe and 
@@ -43,7 +43,28 @@ the class must have a default constructor.
 
 Example is provided in the PythonAPI.py file. 
 
-### Using the COM interface
+### Using the COM interface                                                                                                                                                                                                                                                                                                                                                       
 
+Unlike the CANoe Python API, the COM interface has no need to be established in the Communication Setup. You just need to 
+run the Python script in your editor. There are two ways to establish the COM interface. The first one is to use the
+win32com.client module. The second one is to use the dll files provided by Vector.
+
+##### Usage of the win32com.client module
+
+To use the win32com.client module, you need to import it in your script. Then you need to create a CANoe application object
+and connect it to the CANoe application. After that, you can use the CANoe application object to access the CANoe environment.
+
+Example is provided by the [py_canoe module](https://github.com/chaitu-ycr/py_canoe), which even has already
+implemented some functions for starting measurement, send signals to CAN network and so on.
+
+##### Usage of the dll files provided by Vector
+
+To use the dll files provided by Vector, you need to download the Pythonnet module by running the following command in the command line:
+```pip install pythonnet```
+and also downloading all the [requirements](https://github.com/pythonnet/pythonnet/blob/master/requirements.txt)
+
+After that, you need to import the clr module, load the file, add the reference to the CANoe dll file and import CANoe.
+
+**Example is provided in the COMInterface.py file.**
 
 
