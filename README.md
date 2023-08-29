@@ -56,7 +56,7 @@ To use the win32com.client module, you need to import it in your script. Then yo
 and connect it to the CANoe application. After that, you can use the CANoe application object to access the CANoe environment.
 
 Example is provided by the [py_canoe module](https://github.com/chaitu-ycr/py_canoe), which even has already
-implemented some functions for starting measurement, send signals to CAN network and so on.
+implemented some functions for starting measurement, sending signals to CAN network and so on.
 
 ##### Usage of the dll files provided by Vector
 
@@ -67,5 +67,40 @@ and also downloading all the [requirements](https://github.com/pythonnet/pythonn
 After that, you need to import the clr module, load the file, add the reference to the CANoe dll file and import CANoe.
 
 **Example is provided in the COMInterface.py file.**
+
+#### Issues with the COM interface
+
+First issue is with the [COM interface documentation](file:///C:/Program%20Files/Vector%20CANoe%2017/Help01/CANoeCANalyzerHTML5/CANoeCANalyzer.htm#Topics/COMInterface/COMInterface.htm?TocPath=Technical%2520References%257C_____1)
+which is sometimes not clear enough or incomplete. For example, the documentation for the [CANoe networks is wrong](file:///C:/Program%20Files/Vector%20CANoe%2017/Help01/CANoeCANalyzerHTML5/CANoeCANalyzer.htm#Topics/COMInterface/Objects/COMObjectNetworks.htm).
+The object should be easily accessible by using the following code:
+```self.networks = CANoe.Network(self.CANoeApp.Networks)```, but rather than that, you need to use the following code:
+```self.networks = self.CANoeApp.get_Networks```.
+
+Second issue also comes down to the documentation. In this case some methods and attributes are described in the documentation, but they cannot be used.
+For example, the ```objects.Item(index)``` method is described in the documentation, but it cannot be used or there might be a way
+to use it, but it is not described in the documentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

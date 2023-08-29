@@ -6,6 +6,15 @@ import CANoe
 
 function2 = None
 
+
+
+class CanoeMeasurementEvents:
+    @staticmethod
+    def OnInit():
+        print("OnInit")
+        function2 = CANoe.CAPLFunction(mCANoeCAPL.GetFunction('square'))  # cast here is necessary
+
+
 class CANoeclass:
     """
     This class is used to open CANoe and start measurement and call CAPL function
@@ -16,12 +25,12 @@ class CANoeclass:
 
     def open_can(self):
         self.mCANoeApp = CANoe.Application()
-        self.mCANoeMeasurement = self.mCANoeApp.Measurement  # change here: no cast necessary
+        self.mCANoeMeasurement = self.mCANoeApp.Measurement
         self.mCANoeEnv = CANoe.Environment(self.mCANoeApp.Environment)
         self.mCANoeBus = CANoe.Bus(self.mCANoeApp.get_Bus("CAN"))
         self.mCANoeSys = CANoe.System(self.mCANoeApp.System)
         self.mCANoeNamespaces = CANoe.Namespaces(self.mCANoeSys.Namespaces)
-        self.mCANoeCAPL = CANoe.CAPL(self.mCANoeApp.CAPL)
+
         self.mCANoeMeasurement.OnInit += CANoe._IMeasurementEvents_OnInitEventHandler(self.OnInit)
 
     def OnInit(self):
