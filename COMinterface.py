@@ -1,11 +1,11 @@
 import clr
 from System.Reflection import Assembly
-Assembly.LoadFile('C:\Program Files\Vector CANoe 17\Exec64\Vector.CANoe.Interop.dll')                # load .NET DLL file
-clr.AddReference('Vector.CANoe.Interop')                      # add reference to .NET DLL file
+
+Assembly.LoadFile('C:\Program Files\Vector CANoe 17\Exec64\Vector.CANoe.Interop.dll')  # load .NET DLL file
+clr.AddReference('Vector.CANoe.Interop')  # add reference to .NET DLL file
 import CANoe
 
 function2 = None
-
 
 
 class CanoeMeasurementEvents:
@@ -33,6 +33,16 @@ class CANoeclass:
 
         self.mCANoeMeasurement.OnInit += CANoe._IMeasurementEvents_OnInitEventHandler(self.OnInit)
 
+        # accessing nodes through simulation setup
+        self.mCANoeSimSetup = CANoe.SimulationSetup(self.mCANoeConfig.SimulationSetup)
+        self.mCANoeNodes = CANoe.Nodes(self.mCANoeSimSetup.Nodes)
+        # self.mCANoeNode = classmethod(self.mCANoeNodes.Item(0))    #should be used to access nodes, but it's not
+        # working
+
+        # trying to access devices through networks
+        self.mCANoeNetwork = self.mCANoeApp.get_Networks
+        # self.mCANoeNetwork.Item(1)                           #should be used to access networks, but it's not working
+
     def OnInit(self):
         global function2
         print("OnInit")
@@ -41,11 +51,8 @@ class CANoeclass:
     def callFunction(self):
         result = function2.Call()
 
-
     def start_measurement(self):
         self.mCANoeMeasurement.Start()
-
-
 
 
 if __name__ == "__main__":
@@ -53,4 +60,3 @@ if __name__ == "__main__":
     can.open_can()
     can.start_measurement()
     can.callFunction()
-
