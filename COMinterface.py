@@ -4,6 +4,7 @@ from System.Reflection import Assembly
 Assembly.LoadFile('C:\Program Files\Vector CANoe 17\Exec64\Vector.CANoe.Interop.dll')  # load .NET DLL file
 clr.AddReference('Vector.CANoe.Interop')  # add reference to .NET DLL file
 import CANoe
+from time import sleep as wait
 
 function2 = None
 
@@ -30,6 +31,7 @@ class CANoeclass:
         self.mCANoeBus = CANoe.Bus(self.mCANoeApp.get_Bus("CAN"))
         self.mCANoeSys = CANoe.System(self.mCANoeApp.System)
         self.mCANoeNamespaces = CANoe.Namespaces(self.mCANoeSys.Namespaces)
+        self.mCANoeConfig = CANoe.Configuration(self.mCANoeApp.Configuration)
 
         self.mCANoeMeasurement.OnInit += CANoe._IMeasurementEvents_OnInitEventHandler(self.OnInit)
 
@@ -54,9 +56,14 @@ class CANoeclass:
     def start_measurement(self):
         self.mCANoeMeasurement.Start()
 
+    def end_measurement(self):
+        self.mCANoeMeasurement.Stop()
+
 
 if __name__ == "__main__":
     can = CANoeclass()
     can.open_can()
     can.start_measurement()
-    can.callFunction()
+    #can.callFunction()
+    wait(15)
+    can.end_measurement()
