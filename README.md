@@ -4,6 +4,8 @@
 ### Prerequisites
 [Python version 3.9.2 32 bit](https://www.python.org/downloads/release/python-392/)
 
+IDE Pycharm version 2023.2
+
 Vector CANoe 17 --> configuration file is provided in the repository
 
 ### Using a Python editor 
